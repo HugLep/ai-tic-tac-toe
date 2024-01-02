@@ -19,7 +19,7 @@ def toggle_value(row, col):
         # Passage automatique au prochain tour
         nextRound()
 
-# Fonction qui verifie si le match doit etre terminé par une victoire de l'ordinateur (1), du joueur (-1) ou un match nul (0)
+# Fonction qui vérifie si le match doit être terminé par une victoire de l'ordinateur (1), du joueur (-1) ou un match nul (0)
 def testWin(board):
     for p in [1, 2]:
         for x in [0, 1, 2]:
@@ -85,7 +85,7 @@ def minimax(board, depth, isMaximizing):
         return bestScore
 
 
-# Fonction qui va trouver le meilleur mouvement a faire pour l'ordinateur, à l'aide le l'algorithme Minimax
+# Fonction qui va trouver le meilleur mouvement à faire pour l'ordinateur, à l'aide de l'algorithme Minimax
 def meilleur_mouvement(plateau):
     global meilleur_move_i, meilleur_move_j
 
@@ -107,7 +107,7 @@ def meilleur_mouvement(plateau):
                     meilleur_move_j = j
 
 
-# Fonction pour passer au prochain tour apres le tour du joueur
+# Fonction pour passer au prochain tour après le tour du joueur
 def nextRound():
     global nbPlace
     if testWin(board) != 1 and testWin(board) != 0 and testWin(board) != -1:
@@ -142,7 +142,7 @@ def quit():
     root.destroy()
 
 
-# Fonction pour créer la fenetre du plateau de jeu
+# Fonction pour créer la fenêtre du plateau de jeu
 def create_grid(rows, cols):
     global canvas, cells, board, root, nbPlace
     
@@ -168,7 +168,7 @@ def create_grid(rows, cols):
 
     root.mainloop()
 
-# Fonction pour créer la fenetre anonncant le vainceur ou un match nul
+# Fonction pour créer la fenêtre annonçant le vainqueur ou un match nul
 def winnerWindows(winner):
     global root1
     root1 = tk.Tk()
