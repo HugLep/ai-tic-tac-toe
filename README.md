@@ -28,4 +28,4 @@ Dans le contexte de notre programme Python, l'algorithme Minimax a été implém
 
 L'efficacité de l'algorithme Minimax réside dans sa capacité à explorer l'ensemble des possibilités, garantissant ainsi une prise de décision optimale dans le contexte d'un jeu à deux joueurs.
 
-![Représentation de l'algorithme]([/Images/fenetre-de-fin.png](https://justinmath.com/files/blog/tic-tac-toe-minimax-values-1.png)https://justinmath.com/files/blog/tic-tac-toe-minimax-values-1.png)
+![Représentation de l'algorithme](/Images/minimax.png)
