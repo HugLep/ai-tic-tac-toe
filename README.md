@@ -1,6 +1,7 @@
 # IA capable de gagner à tous les couts au Tic Tac Toe (Morpion)
 
 ## Comment utiliser le programme ?
+- Installer le package *tkinter* en exécutant la commande : *pip install tkinter* dans l'invite de commande.
 - Exécuter le programme *tic-tac-toe.py*, un plateau de jeu 3x3 va s'ouvrir.
 - Vous pouvez jouer en cliquant sur les cases que vous souhaiter. Vous jouez en bleu et l'ordinateur en rouge.
 
