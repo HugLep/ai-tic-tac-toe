@@ -9,11 +9,14 @@ board = [[0 for j in range(3)] for i in range(3)]
 
 # Fonction appelée lorsqu'une case est cliquée
 def toggle_value(row, col):
-    global nbPlace
-
+    global nbPlace, whichPlayer
     if board[row][col] == 0 and nbPlace < 1:
         board[row][col] = 1
-        canvas.itemconfig(cells[row][col], fill='Blue')
+
+        if whichPlayer == "secondPlayer":
+            canvas.itemconfig(cells[row][col], fill='Blue')
+        else:
+            canvas.itemconfig(cells[row][col], fill='Red')
         nbPlace = nbPlace + 1
 
         # Passage automatique au prochain tour
@@ -88,7 +91,6 @@ def minimax(board, depth, isMaximizing):
 # Fonction qui va trouver le meilleur mouvement à faire pour l'ordinateur, à l'aide de l'algorithme Minimax
 def meilleur_mouvement(plateau):
     global meilleur_move_i, meilleur_move_j
-
     meilleur_score = float('-inf')
 
     meilleur_move_i = None
@@ -109,11 +111,16 @@ def meilleur_mouvement(plateau):
 
 # Fonction pour passer au prochain tour après le tour du joueur
 def nextRound():
-    global nbPlace
+    global nbPlace, whichPlayer
+
     if testWin(board) != 1 and testWin(board) != 0 and testWin(board) != -1:
         meilleur_mouvement(board)
         board[meilleur_move_i][meilleur_move_j] = 2
-        canvas.itemconfig(cells[meilleur_move_i][meilleur_move_j], fill='red')
+        
+        if whichPlayer == "secondPlayer":
+            canvas.itemconfig(cells[meilleur_move_i][meilleur_move_j], fill='red')
+        else:
+            canvas.itemconfig(cells[meilleur_move_i][meilleur_move_j], fill='blue')
 
     if testWin(board) != 1 and testWin(board) != 0 and testWin(board) != -1:
         nbPlace = 0
@@ -125,14 +132,19 @@ def nextRound():
 
 # Fonction pour recommencer la partie
 def restart():
-    global board, nbPlace, root1
+    global root, root1, nbPlace, whichPlayer
+
     for i in range(3):
         for j in range(3):
             board[i][j] = 0
-            canvas.itemconfig(cells[i][j], fill='White')
-    
-    nbPlace = 0
+            canvas.itemconfig(cells[i][j] ,fill='white')
+
+    whichPlayer = " "
+
+    root.destroy()
     root1.destroy()
+    
+    menuWindow()
 
 # Fonction pour stopper le jeu
 def quit():
@@ -144,7 +156,7 @@ def quit():
 
 # Fonction pour créer la fenêtre du plateau de jeu
 def create_grid(rows, cols):
-    global canvas, cells, board, root, nbPlace
+    global canvas, cells, board, root, nbPlace, rootMenu, whichPlayer
     
 
     root = tk.Tk()
@@ -165,6 +177,11 @@ def create_grid(rows, cols):
             canvas.tag_bind(cells[i][j], '<Button-1>', lambda e, row=i, col=j: toggle_value(row, col))
 
     nbPlace = 0
+
+    rootMenu.destroy()
+
+    if whichPlayer == "secondPlayer":
+        nextRound()
 
     root.mainloop()
 
@@ -193,6 +210,40 @@ def winnerWindows(winner):
 
 
 
+# Fonction pour Joueur: Premier ; Ordinateur: Second
+def playerOne():
+    global whichPlayer
+    whichPlayer = "firstPlayer"
 
-# Appel de la fonction pour créer le plateau 3x3
-create_grid(3, 3)
+    create_grid(3, 3)
+
+# Fonction pour Joueur: Second ; Ordinateur: Premier
+def playerTwo():
+    global nbPlace, whichPlayer
+
+    nbPlace = 1
+    whichPlayer = "secondPlayer"
+
+    create_grid(3, 3)
+
+
+# Fonction pour créer la fenêtre demandant le role du joueur
+def menuWindow():
+    global rootMenu
+
+    rootMenu = tk.Tk()
+
+    monAffichage = Label(rootMenu, text = "Veux tu jouer en Premier (Rouge) ou en Second (Bleu) ?")
+    monAffichage.pack()
+    
+    restartButton = Button(rootMenu, text = "Premier", command=playerOne)
+    restartButton.pack()
+
+    quitButton = Button(rootMenu, text = "Second", command=playerTwo)
+    quitButton.pack()
+
+    rootMenu.mainloop()
+
+
+# Démarre le jeu avec la fenetre demandant le role du joueur
+menuWindow()
