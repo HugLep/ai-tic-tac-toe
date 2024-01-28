@@ -2,7 +2,8 @@
 
 ## Comment utiliser le programme ?
 - Installer le package *tkinter* en exécutant la commande : *pip install tkinter* dans l'invite de commande.
-- Exécuter le programme *tic-tac-toe.py*, un plateau de jeu 3x3 va s'ouvrir.
+- Exécuter le programme *tic-tac-toe.py*
+- Vous allez pouvoir choisir si vous souhaitez jouer en premier en en second, un plateau de jeu 3x3 va s'ouvrir.
 - Vous pouvez jouer en cliquant sur les cases que vous souhaiter. Vous jouez en bleu et l'ordinateur en rouge.
 
 ![Plateau de jeu](/Images/plateau-de-jeu.png)
