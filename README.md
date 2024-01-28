@@ -1,4 +1,4 @@
-# IA capable de gagner à tous les couts au Tic Tac Toe (Morpion)
+# IA capable de gagner a tout les coup au Tic Tac Toe (Morpion)
 
 ## Comment utiliser le programme ?
 - Installer le package *tkinter* en exécutant la commande : *pip install tkinter* dans l'invite de commande.
